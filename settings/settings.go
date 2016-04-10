@@ -40,6 +40,10 @@ func LoadSettingsByEnv(env string) {
 	jsonErr := json.Unmarshal(content, &settings)
 	if jsonErr != nil {
 		fmt.Println("Error while parsing config file", jsonErr)
+	} else {
+		// Expand environment variables from key paths.
+		settings.PrivateKeyPath = os.ExpandEnv(settings.PrivateKeyPath)
+		settings.PublicKeyPath = os.ExpandEnv(settings.PublicKeyPath)
 	}
 }
 
