@@ -1,6 +1,7 @@
 package redis
 
 import (
+	"fmt"
 	"github.com/garyburd/redigo/redis"
 )
 
@@ -18,6 +19,7 @@ func Connect() (conn *RedisCli) {
 		instanceRedisCli.conn, err = redis.Dial("tcp", ":6379")
 
 		if err != nil {
+			fmt.Println("Redis not responding. Do you have it running?")
 			panic(err)
 		}
 
